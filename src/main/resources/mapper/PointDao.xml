@@ -1,0 +1,60 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.leftchildren.dao.PointDao">
+    <insert id="addPoint">
+        INSERT IGNORE INTO point(uid,title,address,lat,lng,city)
+                VALUES (#{uid},#{title},#{address},#{lat},#{lng},#{city})
+    </insert>
+
+    <select id="queryAll" resultType="Point">
+        SELECT uid,title,address,lat,lng,city
+        FROM point
+        <where>
+            <if test="city != null">
+                city LIKE CONCAT('%',#{city},'%')
+            </if>
+
+        </where>
+        LIMIT #{offset},#{limit}
+    </select>
+
+    <delete id="deleteById">
+        DELETE  FROM point
+        WHERE uid=#{uid}
+    </delete>
+
+    <select id="queryById" resultType="Point">
+        SELECT uid,title,address,lat,lng,city
+        FROM point
+        WHERE uid=#{uid}
+    </select>
+
+    <update id="updatePoint">
+        UPDATE point
+        SET title=#{title},
+            address=#{address},
+            lat=#{lat},
+            lng=#{lng},
+            city=#{city}
+        WHERE uid=#{uid}
+    </update>
+
+    <select id="queryTempPoint" resultType="Point">
+        SELECT *
+        FROM point_temp
+        WHERE uid=#{uid}
+    </select>
+
+    <!-- 可能2个人同时申请该点-->
+    <insert id="addTempPoint" parameterType="Point">
+        INSERT IGNORE INTO point_temp(uid,title,address,lat,lng,city)
+        VALUES (#{uid},#{title},#{address},#{lat},#{lng},#{city})
+    </insert>
+
+    <delete id="deleteTempPointById">
+        DELETE  FROM point_temp
+        WHERE uid=#{uid}
+    </delete>
+
+</mapper>

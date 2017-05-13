@@ -1,0 +1,29 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.leftchildren.dao.OwnerDao">
+    <insert id="insertOwner" parameterType="Owner">
+        INSERT INTO owner
+                VALUES (#{id},#{name},#{phone},#{gender},#{address})
+    </insert>
+
+    <delete id="deleteById">
+        DELETE FROM owner
+        WHERE id=#{id}
+    </delete>
+
+    <select id="queryById" resultType="Owner">
+        SELECT id,name,phone,gender,address
+        FROM owner
+        WHERE id=#{id}
+    </select>
+
+    <update id="updateOwner" parameterType="Owner">
+        UPDATE owner
+        SET name=#{name},
+            phone=#{phone},
+            gender=#{gender},
+            address=#{address}
+        WHERE id=#{id}
+    </update>
+</mapper>

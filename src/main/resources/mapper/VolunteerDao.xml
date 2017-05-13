@@ -1,0 +1,30 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.leftchildren.dao.VolunteerDao">
+
+    <insert id="insertVolunteer" parameterType="Volunteer">
+        INSERT INTO volunteer
+                VALUES (#{id},#{name},#{gender},#{address},#{phone})
+    </insert>
+
+    <delete id="deleteById">
+        DELETE FROM volunteer
+        WHERE id=#{id}
+    </delete>
+
+    <select id="queryById" resultType="Volunteer">
+        select *
+        from volunteer
+        WHERE id=#{id}
+    </select>
+
+    <update id="updateVolunteer" parameterType="Volunteer">
+        update volunteer
+        set  name=#{name},
+            gender=#{gender},
+            address=#{address},
+            phone=#{phone}
+        where id=#{id}
+    </update>
+</mapper>

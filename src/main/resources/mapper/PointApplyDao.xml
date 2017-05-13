@@ -1,0 +1,38 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.leftchildren.dao.PointApplyDao">
+
+    <!-- 添加申请-->
+    <insert id="insertPointApply">
+        INSERT IGNORE INTO point_apply(point_uid,owner_id,state,detail,detail_img)
+        VALUES (#{pointUid},#{ownerId},#{state},#{detail},#{detailImg})
+    </insert>
+
+    <!-- 更新状态-->
+    <update id="updateSateById">
+        update point_apply
+        set  state=#{state}
+        where owner_id=#{ownerId}
+        AND point_uid=#{pointUid}
+    </update>
+
+
+    <select id="getById" resultType="PointApply">
+        SELECT *
+        FROM point_apply
+        WHERE owner_id=#{ownerId}
+        AND point_uid=#{pointUid}
+    </select>
+
+    <select id="getAll" resultType="PointApply" >
+        select *
+        from point_apply
+
+        <where>
+            <if test="state != 10">
+                state = #{state}
+            </if>
+        </where>
+    </select>
+</mapper>
