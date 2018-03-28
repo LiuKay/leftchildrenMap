@@ -3,7 +3,7 @@
 
 
 涉及技术：
-- SpringMVC + Mybaits
+- SpringMVC + Mybatis
 - 数据库采用 MySQL
 - 前端 Bootstrap + JQuery
 - 地图及图表  百度地图 + Echarts
