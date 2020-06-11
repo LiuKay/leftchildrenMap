@@ -1,6 +1,7 @@
 ### leftchildrenMap
 基于WebGIS的留守儿童求助信息共享平台
 
+> 注：本项目缺失了init.js文件，该文件为调用百度地图的 JavaScript API 做一些业务功能上的实现，由于项目比较久远了，我也找不到该文件了，如果需要可以自己做一些实现。
 
 涉及技术：
 - SpringMVC + Mybatis
